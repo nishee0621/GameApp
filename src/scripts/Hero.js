@@ -28,15 +28,62 @@ export class Hero {
 
     overlap(blocker){
        if(this.dy == 0){
-        return this.right > blocker.left &&
+        return this.right > blocker.left + blocker.sprite.width/2 &&
             this.left  < blocker.right && 
             this.top < blocker.bottom;
        }
        else{
-           return this.right > blocker.left &&
+           return this.right > blocker.left + blocker.sprite.width/2 &&
                 this.left < blocker.right &&
-                this.bottom > blocker.top;
+                this.bottom > blocker.top + blocker.sprite.height/2;
        }
+    }
+
+    overlap2(blocker){
+        let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+
+        //hit will determine whether there's a collision
+        hit = false;
+        //Find the center points of each sprite
+        this.centerX = this.x + this.width / 2;
+        this.centerY = this.y + this.height / 2;
+        blocker.centerX = blocker.x + blocker.width / 2;
+        blocker.centerY = blocker.y + blocker.height / 2;
+
+        //Find the half-widths and half-heights of each sprite
+        this.halfWidth = this.width / 2;
+        this.halfHeight = this.height / 2;
+        blocker.halfWidth = blocker.width / 2;
+        blocker.halfHeight = blocker.height / 2;
+
+        vx = this.centerX - blocker.centerX;
+        vy = this.centerY - blocker.centerY;
+
+        //Figure out the combined half-widths and half-heights
+        combinedHalfWidths = this.halfWidth + blocker.halfWidth;
+        combinedHalfHeights = this.halfHeight + blocker.halfHeight;
+
+        if (Math.abs(vx) < combinedHalfWidths) {
+
+            //A collision might be occurring. Check for a collision on the y axis
+            if (Math.abs(vy) < combinedHalfHeights) {
+        
+              //There's definitely a collision happening
+              hit = true;
+            } else {
+        
+              //There's no collision on the y axis
+              hit = false;
+            }
+          } else {
+        
+            //There's no collision on the x axis
+            hit = false;
+          }
+        
+          //`hit` will be either `true` or `false`
+          return hit;
+
     }
 
     get left() {

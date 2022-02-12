@@ -6,6 +6,7 @@ export class Blocker {
         this.sprite = new PIXI.Sprite(Global.resources["tree"].texture);
         this.sprite.scale.set(0.25);
         this.dx = -10;
+        this.b = new Bump(PIXI);
         // console.log(this.sprite.height);
         this.sprite.y = window.innerHeight - y*this.sprite.height;
         this.sprite.x = x;
@@ -21,6 +22,9 @@ export class Blocker {
     checkCollision(hero){
         if(!this.sprite)
             return;
+        // if(this.b.hit(this.sprite,hero.sprite,true)){
+        //     hero.sprite.emit("die");
+        // }
         if(hero.overlap(this)){
             hero.sprite.emit("die");
         }
