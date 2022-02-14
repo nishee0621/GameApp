@@ -3,8 +3,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+let mode = "development";
+if(process.env.NODE_ENV === "production"){
+    mode = "production";
+}
+
 module.exports = {
-  mode: "development",
+  mode: mode,
   devtool: "eval-source-map",
   entry: "./src/scripts/index.js",
   module: {
