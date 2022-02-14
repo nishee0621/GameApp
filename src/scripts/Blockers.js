@@ -9,7 +9,7 @@ export class Blockers {
         this.possibleHeight = [1,2];
         this.rangeOffset = {min: 200, max: 300};
         // this.current = null;
-        this.createBlocker({x: 1000,y: 1});
+        this.createBlocker({x: 3*window.innerWidth/4,y: 1});
     }
 
     createBlocker(data){
