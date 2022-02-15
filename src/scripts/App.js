@@ -10,12 +10,20 @@ export class App {
     run() {
 
         // initialize the canvas
-        this.app = new PIXI.Application({resizeTo: window});
+        // this.app = new PIXI.Application({resizeTo: window});
+        this.app = new PIXI.Application({
+            autoResize: true,
+            resizeTo: window,
+            resolution : devicePixelRatio
+        });
         console.log(this.app);
 
         document.body.appendChild(this.app.view);
+
         Global.scene = new SceneManager();
         this.app.stage.addChild(Global.scene.container);
+        // window.addEventListener('resize', this.resize);
+
         this.app.ticker.add(dt => Global.scene.update(dt));
 
         
@@ -23,8 +31,12 @@ export class App {
         this.loader = new Loader(this.app.loader);
         this.loader.preload().then(() => Global.scene.start(new MainScene()));
 
+    }
 
-
+     
+    resize() {
+        this.app.renderer.resize(window.innerWidth, window.innerHeight);
+        // Global.scene.container.position.set(this.app.screen.width, this.app.screen.height);
     }
 
     

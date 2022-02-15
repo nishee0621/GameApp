@@ -26,7 +26,8 @@ export class FinalScene{
     createPopUp(){
         this.popup = new PIXI.Graphics();
         const width = window.innerWidth/2;
-        const height = window.innerHeight/2;
+        // const height = window.innerHeight/2;
+        const height = width/2;
         const x = window.innerWidth/4;
         const y = window.innerHeight/4;
 
@@ -36,8 +37,8 @@ export class FinalScene{
     }
 
     createLabelScore(score){
-        const x = 3*window.innerWidth/7;
-        const y = window.innerHeight/2 - 200;
+        const x = window.innerWidth/2;
+        const y = window.innerWidth < 700 ? window.innerHeight/4 +15 : window.innerHeight/4 + 40 ;
         const anchor = 0.5;
         this.view = new LabelScore(x,y,anchor);
         this.container.addChild(this.view.view);
@@ -46,13 +47,13 @@ export class FinalScene{
 
     createText(){
         const text = new PIXI.Text();
-        // text.anchor.set(0.5);
-        text.x = 3*window.innerWidth/7;
-        text.y = window.innerHeight/2+100;
+        text.anchor.set(0.5);
+        text.x = window.innerWidth/2;
+        text.y = window.innerHeight/4 + window.innerWidth/5;
         text.style = {
             fontFamily : "Verdana",
             fontWeight : "normal",
-            fontSize : 34,
+            fontSize : window.innerWidth < 700 ? 20 : 34,
             fill : ["#FFFFFF"]
         }
         text.text = "Tap to restart!";

@@ -37,9 +37,14 @@ export class MainScene {
             console.log("event triggered");
             this.hero.changeLane();
         });
+        // this.hero.sprite.once("die", () => {
+    
+        //     Global.scene.start(new FinalScene(this.hero.score));
+        // });
         this.hero.sprite.once("die", () => {
-            Global.scene.start(new FinalScene(this.hero.score));
-        });
+            setTimeout(() => Global.scene.start(new FinalScene(this.hero.score)),30);
+        })
+        
     }
 
     update(dt){

@@ -7,9 +7,10 @@ export class Blockers {
         this.container = new PIXI.Container();
         this.blockers = [];
         this.possibleHeight = [1,2];
-        this.rangeOffset = {min: 200, max: 300};
+        
+        this.setScale();
         // this.current = null;
-        this.createBlocker({x: 3*window.innerWidth/4,y: 1});
+        this.createBlocker({x: window.innerWidth,y: 1});
     }
 
     createBlocker(data){
@@ -46,6 +47,15 @@ export class Blockers {
             blocker.move();
         })
 
+    }
+
+    setScale(){
+        if(window.innerWidth < 700){
+            this.rangeOffset = {min: 100, max: 200};
+        }
+        else {
+            this.rangeOffset = {min: 200, max: 300};
+        }
     }
 
     checkCollision(hero){

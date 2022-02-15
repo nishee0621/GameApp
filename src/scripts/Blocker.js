@@ -4,10 +4,10 @@ import { Global } from "./Global";
 export class Blocker {
     constructor(x,y){
         this.sprite = new PIXI.Sprite(Global.resources["tree"].texture);
-        this.sprite.scale.set(0.25);
-        this.dx = -10;
-        this.b = new Bump(PIXI);
-        // console.log(this.sprite.height);
+        
+       
+        this.setScaling();
+        console.log(this.sprite.height);
         this.sprite.y = window.innerHeight - y*this.sprite.height;
         this.sprite.x = x;
     }
@@ -32,6 +32,17 @@ export class Blocker {
             hero.sprite.emit("score");
         }
             
+    }
+
+    setScaling(){
+        if(window.innerWidth < 700){
+            this.sprite.scale.set(0.10);
+            this.dx = -8;
+        }
+        else {
+            this.sprite.scale.set(0.25);
+            this.dx = -10;
+        }
     }
 
     get left(){
