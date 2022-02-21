@@ -37,7 +37,7 @@ export class Blocker {
     setScaling(){
         if(window.innerWidth < 700){
             this.sprite.scale.set(0.10);
-            this.dx = -8;
+            this.dx = -4;
         }
         else {
             this.sprite.scale.set(0.25);
